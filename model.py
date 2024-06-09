@@ -3,7 +3,6 @@ from keras.layers import Conv2D, Flatten
 from keras.layers import Dense
 from keras.preprocessing.image import ImageDataGenerator
 from keras.src.layers import BatchNormalization, MaxPool2D, Dropout
-import scipy
 
 # Preparação das imagens
 trainDataAugumentation = ImageDataGenerator(
@@ -46,9 +45,9 @@ model.add(Conv2D(24, (3, 3), strides=1, padding='same', activation='relu'))
 model.add(Dropout(0.2))
 model.add(BatchNormalization())
 model.add(MaxPool2D((2, 2), strides=2, padding='same'))
-# model.add(Conv2D(18, (3, 3), strides=1, padding='same', activation='relu'))
-# model.add(BatchNormalization())
-# model.add(MaxPool2D((2, 2), strides=2, padding='same'))
+model.add(Conv2D(18, (3, 3), strides=1, padding='same', activation='relu'))
+model.add(BatchNormalization())
+model.add(MaxPool2D((2, 2), strides=2, padding='same'))
 model.add(Flatten())
 model.add(Dense(units=512, activation='relu'))
 model.add(Dropout(0.3))
@@ -65,4 +64,4 @@ history = model.fit(
 )
 
 # Salvando o modelo
-model.save(model.h5)
+model.save("model.h5")
