@@ -1,13 +1,15 @@
-import os.path
-from sklearn.model_selection import train_test_split
-from tensorflow.keras.utils import to_categorical
-from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import LSTM, Dense
-from tensorflow.keras.callbacks import TensorBoard, Callback
 import numpy as np
+import os
+
+from keras.src.callbacks import Callback, TensorBoard
+from keras.src.layers import LSTM
+from sklearn.model_selection import train_test_split
+from keras.utils import to_categorical
+from keras.models import Sequential
+from keras.layers import Conv2D, MaxPooling2D, Flatten, Dense, Dropout
 
 DATA_PATH = os.path.join('dataset')
-classes = np.array(['a', 'b'])
+classes = np.array(['a', 'b', 'c', 'd', 'e', 'f', 'g', 'i', 'k', 'l', 'm', 'n', 'o'])
 number_of_images = 400
 
 
@@ -40,7 +42,6 @@ images, labels = [], []
 
 for libras_class in classes:
     for image_number in range(number_of_images):
-
         result = np.load(os.path.join(DATA_PATH, libras_class, "{}.npy".format(image_number)))
 
         images.append(result)
@@ -48,8 +49,6 @@ for libras_class in classes:
 
 x = np.array(images)
 y = to_categorical(labels).astype(int)
-
-print(y.shape)
 
 # Dividindo a base entre treino e teste
 x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.20)
@@ -60,9 +59,13 @@ tb_callback = TensorBoard(log_dir=log_dir)
 
 print(x_train.shape)
 print(y_train.shape)
+
+x_train = np.reshape(x_train, (x_train.shape[0], 1, x_train.shape[1]))
+x_test = np.reshape(x_test, (x_test.shape[0], 1, x_test.shape[1]))
+
 # Construção arquitetura da rede neural
 model = Sequential()
-model.add(LSTM(64, return_sequences=True, activation='relu', input_shape=(32, 63)))
+model.add(LSTM(64, return_sequences=True, activation='relu', input_shape=(1,63)))
 model.add(LSTM(128, return_sequences=True, activation='relu'))
 model.add(LSTM(64, return_sequences=False, activation='relu'))
 model.add(Dense(64, activation='relu'))
@@ -74,13 +77,12 @@ model.compile(optimizer='Adam', loss='categorical_crossentropy', metrics=['accur
 
 early_stopping_by_accuracy = EarlyStoppingByAccuracy(monitor='accuracy', value=0.90, verbose=1)
 
-
 # Treinando o modelo
 model.fit(
     x_train,
     y_train,
     epochs=2000,
-    callbacks=[tb_callback]
+    callbacks=[early_stopping_by_accuracy, tb_callback]
 )
 
 model.summary()
