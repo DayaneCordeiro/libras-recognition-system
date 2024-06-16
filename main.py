@@ -16,7 +16,7 @@ mp_drawing = mp.solutions.drawing_utils  # faz os desenhos dos pont
 
 model = load_model('model.h5')
 
-actions = np.array(['ola', 'obrigado', 'a'])
+actions = np.array(['ola', 'obrigado', 'euteamo', 'a', 'b'])
 
 
 def mediapipe_detection(image, model):
@@ -71,7 +71,7 @@ def extract_keypoints(results):
     return np.concatenate([pose, face, left_hand, right_hand])
 
 
-colors = [(245, 117, 16), (117, 245, 16), (16, 117, 245)]
+colors = [(245, 117, 16), (117, 245, 16), (16, 117, 245), (245, 117, 16), (117, 245, 16)]
 
 
 def prob_viz(result, actions, input_frame, colors):

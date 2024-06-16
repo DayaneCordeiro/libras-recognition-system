@@ -65,7 +65,7 @@ def extract_keypoints(results):
 DATA_PATH = os.path.join('MP_Data')
 
 # Ações e gestos que serão detectados
-actions = np.array(['ola', 'obrigado', 'euteamo', 'a'])
+actions = np.array(['ola', 'obrigado', 'euteamo', 'a', 'b'])
 
 number_of_sequencies = 30
 

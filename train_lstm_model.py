@@ -7,7 +7,7 @@ from tensorflow.keras.callbacks import TensorBoard
 import numpy as np
 
 DATA_PATH = os.path.join('MP_Data')
-actions = np.array(['ola', 'obrigado', 'a'])
+actions = np.array(['ola', 'obrigado', 'euteamo', 'a', 'b'])
 number_of_sequencies = 30
 sequence_length = 30
 
@@ -50,10 +50,10 @@ model.add(Dense(32, activation='relu'))
 model.add(Dense(actions.shape[0], activation='softmax'))
 
 # Compilando o modelo
-model.compile(optimizer='Adam', loss='categorical_crossentropy', metrics=['categorical_accuracy'])
+model.compile(optimizer='Adam', loss='categorical_crossentropy', metrics=['accuracy'])
 
 # Treinando o modelo
-model.fit(x_train, y_train, epochs=150, callbacks=[tb_callback])
+model.fit(x_train, y_train, epochs=2000, callbacks=[tb_callback])
 
 model.summary()
 
