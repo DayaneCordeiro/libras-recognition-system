@@ -1,5 +1,4 @@
 import os.path
-
 from sklearn.model_selection import train_test_split
 from tensorflow.keras.utils import to_categorical
 from tensorflow.keras.models import Sequential
@@ -8,7 +7,7 @@ from tensorflow.keras.callbacks import TensorBoard
 import numpy as np
 
 DATA_PATH = os.path.join('MP_Data')
-actions = np.array(['ola', 'obrigado', 'euteamo', 'a'])
+actions = np.array(['ola', 'obrigado', 'a'])
 number_of_sequencies = 30
 sequence_length = 30
 
@@ -31,7 +30,7 @@ for action in actions:
         sequences.append(window)
         labels.append(label_map[action])
 
-x = np.array(sequences, dtype="object")
+x = np.array(sequences)
 y = to_categorical(labels).astype(int)
 
 # Dividindo a base entre treino e teste
@@ -54,4 +53,12 @@ model.add(Dense(actions.shape[0], activation='softmax'))
 model.compile(optimizer='Adam', loss='categorical_crossentropy', metrics=['categorical_accuracy'])
 
 # Treinando o modelo
-model.fit(x_train, y_train, epochs=2000, callbacks=[tb_callback])
+model.fit(x_train, y_train, epochs=150, callbacks=[tb_callback])
+
+model.summary()
+
+result = model.predict(x_test)
+print("Predito: ", actions[np.argmax(result[0])])
+print("Encontrado pela rede: ", actions[np.argmax(y_test[0])])
+
+model.save('model.h5')

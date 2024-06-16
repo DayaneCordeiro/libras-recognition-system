@@ -42,21 +42,21 @@ def draw_landmarks(image, results):
 
 # Extração dos pontos-chave
 def extract_keypoints(results):
-    face = np.array([[result.x, result.y, result.z, result.visibility]
-                     for result in results.face_landmarks.landmark]).flatten() \
-        if results.face_landmarks else np.zeros(33 * 4)
+    pose = np.array([[res.x, res.y, res.z, res.visibility] for res in
+                     results.pose_landmarks.landmark]).flatten() \
+        if results.pose_landmarks else np.zeros(33 * 4)
 
-    pose = np.array([[result.x, result.y, result.z, result.visibility]
-                     for result in results.pose_landmarks.landmark]).flatten() \
-        if results.pose_landmarks else np.zeros(468 * 3)
+    face = np.array([[res.x, res.y, res.z] for res in
+                     results.face_landmarks.landmark]).flatten() \
+        if results.face_landmarks else np.zeros(468*3)
 
-    left_hand = np.array([[result.x, result.y, result.z, result.visibility]
-                          for result in results.left_hand_landmarks.landmark]).flatten() \
-        if results.left_hand_landmarks else np.zeros(21 * 3)
+    left_hand = np.array([[res.x, res.y, res.z] for res in
+                          results.left_hand_landmarks.landmark]).flatten() \
+        if results.left_hand_landmarks else np.zeros(21*3)
 
-    right_hand = np.array([[result.x, result.y, result.z, result.visibility]
-                           for result in results.right_hand_landmarks.landmark]).flatten() \
-        if results.right_hand_landmarks else np.zeros(21 * 3)
+    right_hand = rh = np.array([[res.x, res.y, res.z] for res in
+                                results.right_hand_landmarks.landmark]).flatten() \
+        if results.right_hand_landmarks else np.zeros(21*3)
 
     return np.concatenate([pose, face, left_hand, right_hand])
 
@@ -95,14 +95,13 @@ with mp_holistic.Holistic(min_detection_confidence=0.5, min_tracking_confidence=
 
                 # Faz a detecção
                 image, results = mediapipe_detection(frame, holistic)
-                print(results)
 
                 # Desenhando os pontos de referência
                 draw_landmarks(image, results)
 
                 # Lógica que aguarda para salvar os frames
                 if frame_number == 0:
-                    cv2.putText(image, 'Iniciando a coleta de dados', (120, 200),
+                    cv2.putText(image, 'INICIANDO A COLETA DE DADOS', (120, 200),
                                 cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 4, cv2.LINE_AA)
                     cv2.putText(image, 'Coletando frames para a classe {} - video {}/30'.format(action, sequence), (15, 12),
                                 cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 255), 1, cv2.LINE_AA)
