@@ -6,13 +6,15 @@ from keras.src.layers import LSTM
 from sklearn.model_selection import train_test_split
 from keras.utils import to_categorical
 from keras.models import Sequential
-from keras.layers import Conv2D, MaxPooling2D, Flatten, Dense, Dropout
+from keras.layers import Dense
 
 DATA_PATH = os.path.join('dataset')
-classes = np.array(['a', 'b', 'c', 'd', 'e', 'f', 'g', 'i', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'teamo'])
+classes = np.array(
+    ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'i', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y',
+     'teamo'])
 number_of_images = 400
 
-
+# Logica para parar o código quando a acurácia foi satisfatória
 class EarlyStoppingByAccuracy(Callback):
     def __init__(self, monitor='accuracy', value=0.90, verbose=1):
         super(Callback, self).__init__()
@@ -65,7 +67,7 @@ x_test = np.reshape(x_test, (x_test.shape[0], 1, x_test.shape[1]))
 
 # Construção arquitetura da rede neural
 model = Sequential()
-model.add(LSTM(64, return_sequences=True, activation='relu', input_shape=(1,63)))
+model.add(LSTM(64, return_sequences=True, activation='relu', input_shape=(1, 63)))
 model.add(LSTM(128, return_sequences=True, activation='relu'))
 model.add(LSTM(64, return_sequences=False, activation='relu'))
 model.add(Dense(64, activation='relu'))

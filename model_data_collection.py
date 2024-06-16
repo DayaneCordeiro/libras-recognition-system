@@ -40,7 +40,7 @@ def extract_key_points(results):
 DATA_PATH = os.path.join('dataset')
 
 # Ações e gestos que serão detectados
-classes = np.array(['teamo'])
+classes = np.array(['a'])
 
 # Número de imagens para cada classe
 number_of_images = 400
@@ -80,7 +80,7 @@ with mp_holistic.Holistic(min_detection_confidence=0.5, min_tracking_confidence=
                             (15, 12),
                             cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 255), 1, cv2.LINE_AA)
             else:
-                cv2.putText(image, 'Coletando frames para a classe {} - video {}/{}'.format(libras_class,
+                cv2.putText(image, 'Coletando imagens para a classe {} - imagem {}/{}'.format(libras_class,
                                                                                             image_number,
                                                                                             number_of_images),
                             (15, 12),
