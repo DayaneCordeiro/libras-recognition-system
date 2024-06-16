@@ -16,7 +16,7 @@ mp_drawing = mp.solutions.drawing_utils  # faz os desenhos dos pont
 
 model = load_model('model.h5')
 
-actions = np.array(['a', 'b', 'c', 'd', 'e', 'f', 'g', 'i', 'k', 'l', 'm', 'n', 'o'])
+actions = np.array(['a', 'b', 'c', 'd', 'e', 'f', 'g', 'i', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r'])
 
 
 def mediapipe_detection(image, model):
