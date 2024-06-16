@@ -16,7 +16,7 @@ mp_drawing = mp.solutions.drawing_utils  # faz os desenhos dos pont
 
 model = load_model('model.h5')
 
-actions = np.array(['a', 'b', 'c', 'd', 'e', 'f', 'g', 'i', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r'])
+actions = np.array(['a', 'b', 'c', 'd', 'e', 'f', 'g', 'i', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'teamo'])
 
 
 def mediapipe_detection(image, model):
@@ -93,7 +93,7 @@ with mp_holistic.Holistic(min_detection_confidence=0.5, min_tracking_confidence=
                 sentence = sentence[-3:]
 
             # image = prob_viz(res, actions, image, colors)
-            cv2.putText(image, actions[np.argmax(res)], (480, 200), cv2.FONT_HERSHEY_DUPLEX, 5, (255, 255, 255), 2,
+            cv2.putText(image, actions[np.argmax(res)], (200, 100), cv2.FONT_HERSHEY_DUPLEX, 3, (1, 1, 1), 2,
                         cv2.LINE_AA)
 
         # cv2.rectangle(image, (0, 0), (640, 40), (245, 117, 16), -1)
