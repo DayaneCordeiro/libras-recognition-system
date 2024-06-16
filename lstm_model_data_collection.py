@@ -65,16 +65,17 @@ def extract_keypoints(results):
 DATA_PATH = os.path.join('MP_Data')
 
 # Ações e gestos que serão detectados
-actions = np.array(['ola', 'obrigado', 'euteamo', 'a', 'b'])
+actions = np.array(['euteamo'])
 
-number_of_sequencies = 30
+number_of_sequencies = 50
 
 # os vídeos terão como tamanho 30 frames
 sequence_length = 30
+start_in=0
 
 # cria no sistema operacional uma pasta para cada classe contendo 30 pastas dentro com os frames coletados
 for action in actions:
-    for sequence in range(number_of_sequencies):
+    for sequence in range(start_in, number_of_sequencies):
         try:
             os.makedirs(os.path.join(DATA_PATH, action, str(sequence)))
         except:
@@ -88,7 +89,7 @@ with mp_holistic.Holistic(min_detection_confidence=0.5, min_tracking_confidence=
     # Percorre as ações definidas
     for action in actions:
         # Executa 30 vezes para obter 30 vídeos de cada ação
-        for sequence in range(number_of_sequencies):
+        for sequence in range(start_in, number_of_sequencies):
             # Executa 30 vezes para obter 30 frames dos pontos-chave que formarão os vídeos
             for frame_number in range(sequence_length):
                 ret, frame = cap.read()
@@ -103,12 +104,12 @@ with mp_holistic.Holistic(min_detection_confidence=0.5, min_tracking_confidence=
                 if frame_number == 0:
                     cv2.putText(image, 'INICIANDO A COLETA DE DADOS', (120, 200),
                                 cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 4, cv2.LINE_AA)
-                    cv2.putText(image, 'Coletando frames para a classe {} - video {}/30'.format(action, sequence), (15, 12),
+                    cv2.putText(image, 'Coletando frames para a classe {} - video {}/{}'.format(action, sequence, number_of_sequencies), (15, 12),
                                 cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 255), 1, cv2.LINE_AA)
                     cv2.imshow('Reconhecimento de LIBRAS com LSTM Deep Learning', image)
                     cv2.waitKey(2000)
                 else:
-                    cv2.putText(image, 'Coletando frames para a classe {} - video {}/30'.format(action, sequence), (15, 12),
+                    cv2.putText(image, 'Coletando frames para a classe {} - video {}/{}'.format(action, sequence, number_of_sequencies), (15, 12),
                                 cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 255), 1, cv2.LINE_AA)
                     cv2.imshow('Reconhecimento de LIBRAS com LSTM Deep Learning', image)
 

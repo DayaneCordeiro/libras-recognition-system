@@ -8,7 +8,7 @@ import mediapipe as mp
 
 sequence = []
 sentence = []
-threshold = 0.7
+threshold = 0.90
 
 # Inicializando as variáveis das libs do mediapipe que vão ajudar no mapeamento da face e da mão
 mp_holistic = mp.solutions.holistic  # Faz as detecções
@@ -16,7 +16,7 @@ mp_drawing = mp.solutions.drawing_utils  # faz os desenhos dos pont
 
 model = load_model('model.h5')
 
-actions = np.array(['ola', 'obrigado', 'euteamo', 'a', 'b'])
+actions = np.array(['obrigado', 'euteamo'])
 
 
 def mediapipe_detection(image, model):
