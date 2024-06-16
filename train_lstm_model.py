@@ -2,6 +2,9 @@ import os.path
 
 from sklearn.model_selection import train_test_split
 from tensorflow.keras.utils import to_categorical
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import LSTM, Dense
+from tensorflow.keras.callbacks import TensorBoard
 import numpy as np
 
 DATA_PATH = os.path.join('MP_Data')
@@ -28,4 +31,27 @@ for action in actions:
         sequences.append(window)
         labels.append(label_map[action])
 
-x = np.array(sequences)
+x = np.array(sequences, dtype="object")
+y = to_categorical(labels).astype(int)
+
+# Dividindo a base entre treino e teste
+x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.05)
+
+# Obtenção de logs para monitorar o treinamento da rede
+log_dir = os.path.join('Logs')
+tb_callback = TensorBoard(log_dir=log_dir)
+
+# Construção arquitetura da rede neural
+model = Sequential()
+model.add(LSTM(64, return_sequences=True, activation='relu', input_shape=(30, 1662)))
+model.add(LSTM(128, return_sequences=True, activation='relu'))
+model.add(LSTM(64, return_sequences=False, activation='relu'))
+model.add(Dense(64, activation='relu'))
+model.add(Dense(32, activation='relu'))
+model.add(Dense(actions.shape[0], activation='softmax'))
+
+# Compilando o modelo
+model.compile(optimizer='Adam', loss='categorical_crossentropy', metrics=['categorical_accuracy'])
+
+# Treinando o modelo
+model.fit(x_train, y_train, epochs=2000, callbacks=[tb_callback])
