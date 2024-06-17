@@ -2,7 +2,7 @@
 
 ## Visão Geral
 
-Este projeto visa identificar sinais e gestos da Linguagem de Sinais Brasileira (Libras) utilizando redes neurais LSTM 
+Este projeto visa identificar sinais e gestos da Linguagem Brasileira de Sinais (Libras) utilizando redes neurais LSTM 
 (Long Short-Term Memory) e a ferramenta MediaPipe. Através deste projeto, esperamos contribuir para a acessibilidade e 
 inclusão de pessoas com deficiência auditiva, facilitando a comunicação entre falantes de Libras e ouvintes.
 
