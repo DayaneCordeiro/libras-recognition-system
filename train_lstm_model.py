@@ -7,7 +7,7 @@ from tensorflow.keras.callbacks import TensorBoard, Callback
 import numpy as np
 
 DATA_PATH = os.path.join('MP_Data')
-actions = np.array(['obrigado', 'euteamo', 'a'])
+actions = np.array(['obrigado', 'saudade', 'tudobem'])
 number_of_sequencies = 30
 sequence_length = 30
 
@@ -63,7 +63,7 @@ tb_callback = TensorBoard(log_dir=log_dir)
 
 # Construção arquitetura da rede neural
 model = Sequential()
-model.add(LSTM(64, return_sequences=True, activation='relu', input_shape=(30, 1662)))
+model.add(LSTM(128, return_sequences=True, activation='relu', input_shape=(30, 1662)))
 model.add(LSTM(128, return_sequences=True, activation='relu'))
 model.add(LSTM(64, return_sequences=False, activation='relu'))
 model.add(Dense(64, activation='relu'))
@@ -80,7 +80,7 @@ early_stopping_by_accuracy = EarlyStoppingByAccuracy(monitor='accuracy', value=0
 model.fit(
     x_train,
     y_train,
-    batch_size=16,
+    batch_size=32,
     epochs=2000,
     validation_data=(x_test, y_test),
     callbacks=[early_stopping_by_accuracy, tb_callback]
@@ -92,4 +92,4 @@ result = model.predict(x_test)
 print("Predito: ", actions[np.argmax(result[0])])
 print("Encontrado pela rede: ", actions[np.argmax(y_test[0])])
 
-model.save('model.h5')
+model.save('lstm_model.h5')

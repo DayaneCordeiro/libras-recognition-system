@@ -65,9 +65,9 @@ def extract_keypoints(results):
 DATA_PATH = os.path.join('MP_Data')
 
 # Ações e gestos que serão detectados
-actions = np.array(['euteamo'])
+actions = np.array(['tudobem'])
 
-number_of_sequencies = 50
+number_of_sequencies = 30
 
 # os vídeos terão como tamanho 30 frames
 sequence_length = 30

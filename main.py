@@ -1,9 +1,6 @@
 import cv2
 import numpy as np
-import os
 from keras.models import load_model
-from matplotlib import pyplot as plt
-import time
 import mediapipe as mp
 
 sequence = []
@@ -14,9 +11,9 @@ threshold = 0.90
 mp_holistic = mp.solutions.holistic  # Faz as detecções
 mp_drawing = mp.solutions.drawing_utils  # faz os desenhos dos pont
 
-model = load_model('model.h5')
+model = load_model('lstm_model.h5')
 
-actions = np.array(['obrigado', 'euteamo'])
+actions = np.array(['obrigado', 'saudade', 'tudobem'])
 
 
 def mediapipe_detection(image, model):
