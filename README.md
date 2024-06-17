@@ -1,4 +1,4 @@
-# Identificação de Sinais e Gestos de Libras com Redes Neurais LSTM
+# Identificação de Sinais e Gestos de Libras com Redes Neurais LSTM ✊
 
 ## Visão Geral
 
@@ -131,10 +131,12 @@ A base de dados, portanto foi simplificada e ficou da seguinte forma:
 >> a/ <br>
 >>>> 0.npy<br>
 >>>> 1.npy
+<br>
 
 ### 2. Divisão da base de dados
 
 Para ambas redes LSTM, os dados foram divididos entre 80% para treinamento e 20% para teste e validação da rede.
+<br><br>
 
 ### 3. Arquitetura da rede
 
@@ -149,16 +151,19 @@ INPUT => LSTM => LSTM => LSTM => DENSE => DENSE => DENSE => OUTPUT
 Para realizar o treinamento, foram configuradas inicialmente 2000 épocas, porém para mitigar problemas de overfitting,
 foi adicionada uma lógica que para o treinamento da rede assim que seja atingido um valor pré-definido de acurácia, que
 no caso deste projeto, foi de 90%.
+<br><br>
 
 ### 4. Predições e logs
 
 Após treinamento da rede neural, foi feita uma predição com algum valor aleatório passando pela rede. Além disso,
 foram coletados logs que mostram acurácia em relação à quantidade de épocas utilizadas.
+<br><br>
 
 ### 5. Testes em tempo real
 A última etapa, trata-se do uso da aplicação em si. Novamente obtendo apoio do mediapipe e do openCV para coletar as
 imagens da webcam e mapear os pontos de interesse. Com os pontos definidos, a imagem é classificada e a letra ou
 gesto detectado é exibido na tela.
+<br><br>
 
 ## Resultados obtidos
 
