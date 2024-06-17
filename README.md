@@ -26,7 +26,6 @@ de fala, tradução de idiomas e, neste caso, identificação de sinais de lingu
 - **Python**: A linguagem de programação utilizada para desenvolver o projeto - versão 3.8.
 - **MediaPipe**: Um framework de machine learning para construir pipelines multimodais customizáveis. Utilizado aqui para captura e processamento dos movimentos das mãos, pose e rosto.
 - **TensorFlow/Keras**: Utilizados para a construção e treinamento da rede neural LSTM.
-- 
 
 ## Estrutura do Projeto
 
@@ -53,6 +52,23 @@ de fala, tradução de idiomas e, neste caso, identificação de sinais de lingu
 4. Execute o script principal:
    ```bash
    python main.py
+   ```
+
+## Como executar os logs após o treinamento da rede
+
+Para uma visualização gráfica dos logs, foi utilizada a classe TensorBoard da biblioteca 
+<code>keras.src.callbacks</code>. Para execução da biblioteca é necessário seguir os seguintes passos:
+1. Na pasta raiz do projeto, navegue até o diretório de logs:
+   ```bash
+   cd Logs/train
+   ```
+2. Execute o seguinte comando:
+   ```bash
+   tensorboard --logdir=.
+   ```
+3. Após a execução do comando, abra o navegador no seguinte endereço:
+   ```bash
+   http://localhost:6006
    ```
 
 ## Metodologia utilizada
@@ -84,7 +100,7 @@ Para as primeiras implementações do projeto, o dataset foi montado com imagens
 de cada sinal do alfabeto em Libras através da ferramenta [Teachable Machine](https://teachablemachine.withgoogle.com/).
 As imagens foram divididas em uma proporção 75:25 em duas pastas denominadas <code>train</code> e <code>test</code>.<br>
 
-Já para a implementação do projeto utilizando LSTM, as ferramentas do mediapipe foram utilizadas. No caso do projeto
+Já para a implementação do projeto utilizando LSTM, as ferramentas do mediapipe e do openCV foram utilizadas. No caso do projeto
 que mapeia os gestos, foram coletados os pontos de referência das duas mãos, da pose e da face como mostra na imagem 
 abaixo. Para o modelo que mapeia as imagens estáticas, foram coletados apenas os pontos da mão direita.
 
@@ -98,16 +114,17 @@ a estrutura da base de dados ficou parecida o que se vê abaixo:
 > dataset/<br>
 >> a/ <br>
 >>> 0/
->>>> trinta_frames_da_classe_a.npy
->>> 1/
->>>> outros_trinta_frames_da_classe_a.npy
+>>>> trinta_frames_da_classe_a.npy<br>
+
+>>> 1/<br>
+>>>> outros_trinta_frames_da_classe_a.npy<br>
 
 Para o modelo LSTM que implementa apenas as imagens estáticas, foram coletadas 400 imagens de cada um dos sinais. 
 A base de dados, portanto foi simplificada e ficou da seguinte forma:
 
 > dataset/<br>
 >> a/ <br>
->>>> 0.npy
+>>>> 0.npy<br>
 >>>> 1.npy
 
 ### 2. Divisão da base de dados
@@ -139,28 +156,38 @@ imagens da webcam e mapear os pontos de interesse. Com os pontos definidos, a im
 gesto detectado é exibido na tela.
 
 ## Resultados obtidos
+
+A seguir, são exibidos os resultados obtidos para os dois modelos LSTM.
+
 ### Modelo estático:
 A rede neural foi implementada com um valor inicial de 2000 épocas, porém, foi utilizada uma lógica de parada adiantada 
 (Early Stopping Callback), caso alcançasse uma acurácia de no mínimo 90%. Após 35 épocas executadas, o valor desejado 
 para a acuária foi atingido, a imagem abaixo mostra os logs retornados ao fim do treinamento da rede.
+
 ![](https://github.com/DayaneCordeiro/libras-recognition-system/blob/main/imgs/resultados_treino_rede.png)
 
 <br>
+Gráfico coletado pós treinamento da rede, onde no eixo x é exibida a quantidade de épocas e no eixo y a acurácia:
 
-Para uma visualização gráfica dos logs, foi utilizada a classe TensorBoard da biblioteca 
-<code>keras.src.callbacks</code>. Para execução da biblioteca é necessário seguir os seguintes passos:
-1. Na pasta raiz do projeto, navegue até o diretório de logs:
-   ```bash
-   cd Logs/train
-   ```
-2. Execute o seguinte comando:
-   ```bash
-   tensorboard --logdir=.
-   ```
-3. Após a execução do comando, abra o navegador no seguinte endereço:
-   ```bash
-   http://localhost:6006
-   ```
+![](https://github.com/DayaneCordeiro/libras-recognition-system/blob/main/imgs/gr%C3%A1fico_acuracia_por_epoca_modelo_estatico.png)
+
+Grafo gerado pelo treinamento da rede:
+
+![](https://github.com/DayaneCordeiro/libras-recognition-system/blob/main/imgs/png.png)
+
+### Modelo dinâmico:
+Foi implemtada com a mesma lógica de parada antecipada da rede estática. Para o treinamento da rede com 3 classes com acurácia acima de 90%, foram necessárias 81 épocas.
+
+![](https://github.com/DayaneCordeiro/libras-recognition-system/blob/main/imgs/resultado_rede_dinamica.png)
+
+<br>
+Gráfico coletado pós treinamento da rede, onde no eixo x é exibida a quantidade de épocas e no eixo y a acurácia:
+
+![](https://github.com/DayaneCordeiro/libras-recognition-system/blob/main/imgs/grafico_rede_dinamica.png)
+
+Grafo gerado pelo treinamento da rede:
+
+![](https://github.com/DayaneCordeiro/libras-recognition-system/blob/main/imgs/png%20(1).png)
 
 ## Licença
 
