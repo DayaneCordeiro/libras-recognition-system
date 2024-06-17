@@ -73,7 +73,7 @@ Para uma visualização gráfica dos logs, foi utilizada a classe TensorBoard da
 
 ## Metodologia utilizada
 O maior desafio encontrado no desenvolvimento projeto foi trabalhar com os gestos. Foram realizadas primeiramente duas 
-implementações de uma solução satisfatória, uma trabalhando com visão computacional e outra com uma rede 
+tentativas de implementações de uma solução satisfatória, uma trabalhando com visão computacional e outra com uma rede 
 neural convolucional (CNN). Ambas não obtiveram sucesso.<br>
 
 A terceira implementação, foi a que se apresentou um resultado mais próximo do desejado, porém ainda com muitos pontos
