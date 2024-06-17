@@ -95,6 +95,11 @@ de dois modelos. Um que servirá de exemplo para as melhorias futuras, contempla
 e outro modelo baseado neste primeiro, porém simplificado, que contempla apenas sinais estáticos da linguagem. A
 metodologia aplicado em ambos será detalhada logo abaixo.
 
+Importante: Para acessar o modelo que detecta movimentos, é necessário executar o comando abaixo, o modelo será mergeado posteriormente após melhorias.
+```
+git checkout feature/RNN_LSTM
+```
+
 ### 1. Coleta de dados
 Para as primeiras implementações do projeto, o dataset foi montado com imagens em formato png. Foram tiradas 500 fotos
 de cada sinal do alfabeto em Libras através da ferramenta [Teachable Machine](https://teachablemachine.withgoogle.com/).
@@ -188,6 +193,11 @@ Gráfico coletado pós treinamento da rede, onde no eixo x é exibida a quantida
 Grafo gerado pelo treinamento da rede:
 
 ![](https://github.com/DayaneCordeiro/libras-recognition-system/blob/main/imgs/png%20(1).png)
+
+## Melhorias
+* Desenho de uma arquitetura adequada para classificar mais classes com movimentos corporais.
+* Após merge da arquitura em questão na branch main, criar uma lógica para que não seja necessário gravar frames em classes que a mão fica parada, poupando assim processamento de CPU.
+* Melhorias no feedback da rede.
 
 ## Licença
 
