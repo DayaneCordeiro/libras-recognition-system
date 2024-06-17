@@ -14,8 +14,8 @@ LSTM é um tipo de rede neural recorrente (RNN) projetada para aprender dependê
 
 ## Ferramentas e Tecnologias
 
-- **Python**: A linguagem de programação utilizada para desenvolver o projeto.
-- **MediaPipe**: Um framework de machine learning para construir pipelines multimodais customizáveis. Utilizado aqui para captura e processamento dos movimentos das mãos.
+- **Python**: A linguagem de programação utilizada para desenvolver o projeto - versão 3.8.
+- **MediaPipe**: Um framework de machine learning para construir pipelines multimodais customizáveis. Utilizado aqui para captura e processamento dos movimentos das mãos, pose e rosto.
 - **TensorFlow/Keras**: Utilizados para a construção e treinamento da rede neural LSTM.
 
 ## Estrutura do Projeto
@@ -44,14 +44,42 @@ LSTM é um tipo de rede neural recorrente (RNN) projetada para aprender dependê
    python main.py
    ```
 
+## Resultados obtivos
+### Modelo estático:
+A rede neural foi implementada com um valor incial de 2000 épocas, porém, foi utilizada uma lógica de parada adiantada (Early Stopping Callback), caso alcançasse uma acurácia de no mínimo 90%. Após 35 épocas executadas, o valor desejado para a acuária foi atingido, a imagem abaixo mostra os logs retornados ao fim do treinamento da rede.
+![](https://github.com/DayaneCordeiro/libras-recognition-system/blob/main/imgs/resultados_treino_rede.png)
+
+<br>
+
+Para uma visualização gráfica dos logs, foi utilizada a classe TensorBoard da biblioteca <code>keras.src.callbacks</code>. Para execução da biblioteca é necessário seguir os seguintes passos:
+1. Na pasta raiz do projeto, navegue ate o diretório de logs:
+   ```bash
+   cd Logs/train
+   ```
+2. Execute o seguinte comando:
+   ```bash
+   tensorboard --logdir=.
+   ```
+3. Após a execução do comando, abra o navegador no sequinte endereço:
+   ```bash
+   http://localhost:6006
+   ```
+
 ## Licença
 
 Este projeto está licenciado sob a MIT License. Veja o arquivo LICENSE para mais detalhes.
 
-## Contato
-
-Para mais informações, entre em contato pelo email: [dayane.cordeirogs@gmail.com](mailto:dayane.cordeirogs@gmail.com).
-
 ---
+<div id="author">
+    <h1>Autora</h1>
+    <a href="https://github.com/DayaneCordeiro">
+        <img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/50596100?v=4" width="150px;" alt=""/>
+        <br />
+        <sub><b>Dayane Cordeiro</b></sub>
+    </a>
 
-Esperamos que este projeto ajude a promover a inclusão e facilite a comunicação entre falantes de Libras e ouvintes. Agradecemos por seu interesse e apoio!
+Made with ❤️ by Dayane Cordeiro!
+
+✔ Computer Engineering student at PUC Minas<br>
+✔ Java Developer<br>
+✔ Passionate about software development, computer architecture and learning.<br>
