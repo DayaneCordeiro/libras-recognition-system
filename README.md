@@ -109,7 +109,11 @@ Já para a implementação do projeto utilizando LSTM, as ferramentas do mediapi
 que mapeia os gestos, foram coletados os pontos de referência das duas mãos, da pose e da face como mostra na imagem 
 abaixo. Para o modelo que mapeia as imagens estáticas, foram coletados apenas os pontos da mão direita.
 
+<div align="center">
+
 ![](https://github.com/DayaneCordeiro/libras-recognition-system/blob/main/imgs/landmarks_stylized.png)
+
+</div>
 
 Para o projeto com os gestos, foi implementada uma lógica que cria uma pasta para cada classe definida e 30 
 pastas para cada uma das classes, onde ficam as sequências de frames coletadas. A ideia geral foi, coletar 30 frames 
