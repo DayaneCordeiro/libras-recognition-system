@@ -208,6 +208,20 @@ Grafo gerado pelo treinamento da rede:
 * Após merge da arquitura em questão na branch main, criar uma lógica para que não seja necessário gravar frames em classes que a mão fica parada, poupando assim processamento de CPU.
 * Melhorias no feedback da rede.
 
+## Referências
+* https://towardsdatascience.com/sign-language-recognition-with-advanced-computer-vision-7b74f20f3442
+* https://github.com/mg343/Sign-Language-Detection
+* https://estevestoni.medium.com/agrupando-conceitos-e-classificando-imagens-com-deep-learning-5b2674f99539
+* https://pt.linkedin.com/pulse/classifica%C3%A7%C3%A3o-de-imagens-atrav%C3%A9s-deep-learning-s%C3%A9rgio-saraiva
+* https://github.com/lucaaslb/cnn-libras
+* https://www.youtube.com/watch?v=RalkFg7dXQ0
+* https://www.youtube.com/watch?v=doDUihpj6ro
+* https://www.youtube.com/watch?v=_X2i1MXPCkA
+* https://ieeexplore.ieee.org/document/10091051/figures#figures
+* https://github.com/Paul1086/ASL-Recognition-with-Classic-CNNs-and-Deep-CNN
+* https://medium.com/@web2ajax/redes-neurais-recorrentes-lstm-b90b720dc3f6
+* https://www.youtube.com/watch?v=krAh2gA79SM
+
 ## Licença
 
 Este projeto está licenciado sob a MIT License. Veja o arquivo LICENSE para mais detalhes.
