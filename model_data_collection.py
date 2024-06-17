@@ -40,7 +40,7 @@ def extract_key_points(results):
 DATA_PATH = os.path.join('dataset')
 
 # Ações e gestos que serão detectados
-classes = np.array(['a'])
+classes = np.array(['v'])
 
 # Número de imagens para cada classe
 number_of_images = 400
