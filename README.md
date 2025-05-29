@@ -97,7 +97,7 @@ metodologia aplicado em ambos será detalhada logo abaixo.
 
 Importante: Para acessar o modelo que detecta movimentos, é necessário executar o comando abaixo, o modelo será mergeado posteriormente após melhorias.
 ```
-git checkout feature/RNN_LSTM
+git checkout feat/RNN_LSTM
 ```
 
 ### 1. Coleta de dados
